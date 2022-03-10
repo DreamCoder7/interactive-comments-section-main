@@ -1,0 +1,261 @@
+:root {
+  --color-primary--blue: hsl(238, 40%, 52%);
+  --color-primary--red: hsl(358, 79%, 66%);
+  --color-primary--grayish-blue: hsl(239, 57%, 85%);
+  --color-primary--pale-red: hsl(357, 100%, 86%);
+
+  --color--dark--blue: hsl(212, 24%, 26%);
+  --color--grayish--blue: hsl(211, 10%, 45%);
+  --color--light--gray: hsl(223, 19%, 93%);
+  --color--very--light--gray: hsl(228, 33%, 97%);
+  --color--white: hsl(0, 0%, 100%);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--color--very--light--gray);
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments__list {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comments__list--item {
+  list-style: none;
+  background-color: var(--color--white);
+  border-radius: 1rem;
+  padding: 2.4rem 1.8rem;
+
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.item__input {
+  background-color: var(--color--very--light--gray);
+  padding: 1rem 0.8rem;
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.item__input--num {
+  font-size: 1.6rem;
+  color: var(--color-primary--blue);
+}
+
+.item__input--icon {
+  width: 1rem;
+  cursor: pointer;
+}
+
+.user__comment {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.user__comment-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user__comment--info {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.user__img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.user__name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color--dark--blue);
+}
+
+.user__period {
+  font-size: 1.2rem;
+  color: var(--color--grayish--blue);
+}
+
+.user__comment--text {
+  color: var(--color--grayish--blue);
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.item__btn {
+  background: none;
+  border: none;
+  color: var(--color-primary--blue);
+  font-weight: 800;
+  cursor: pointer;
+
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Reply */
+.comment__reply {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.comment__reply--img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.comment__reply--input {
+  background: none;
+  border: none;
+  width: 80%;
+  height: 8rem;
+  border: 2px solid var(--color--grayish--blue);
+  border-radius: 1rem;
+}
+
+.comment__reply--btn {
+  background: none;
+  border: none;
+  background-color: var(--color-primary--blue);
+  padding: 1rem 2.4rem;
+  border-radius: 0.6rem;
+  color: var(--color--white);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Replied */
+.commnet__replied {
+  align-self: flex-end;
+  width: 90%;
+}
+
+.owner {
+  background-color: var(--color-primary--blue);
+  padding: 3px 6px;
+  color: var(--color--white);
+  font-size: 1.2rem;
+}
+
+.btns {
+  display: flex;
+  gap: 1.6rem;
+}
+
+/* Popup */
+.overlay {
+  position: absolute;
+  background-color: rgba(50, 65, 82, 0.8);
+  width: 100%;
+  height: 100vh;
+}
+
+.popup {
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+  width: 21%;
+}
+
+.comment__delete {
+  background-color: var(--color--white);
+  padding: 2.4rem;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.comment__delete--heading {
+  font-size: 1.6rem;
+  color: var(--color--dark--blue);
+  font-weight: 600;
+}
+
+.comment__delete--text {
+  font-size: 1.2rem;
+  color: var(--color--grayish--blue);
+  line-height: 1.5;
+}
+
+.comment__delete--btns {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.comment__delete--btn {
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color--white);
+  padding: 1rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: var(--color--grayish--blue);
+}
+
+.delete {
+  background-color: var(--color-primary--red);
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* Hidden */
+/* TEMP */
+.hidden {
+  display: none;
+}
