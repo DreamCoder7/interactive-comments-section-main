@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
 
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="./src/images/favicon-32x32.png"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,14 +17,15 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
     <title>Frontend Mentor | Interactive comments section</title>
-    <script defer src="js/controller.js"></script>
+    <script type="module" defer src="./src/js/controller.js"></script>
   </head>
   <body>
     <!-- Pull dynamic content from the data.json file -->
     <div class="container">
       <ul class="comments__list">
+        <!--
         <li class="comments__list--item">
           <div class="item__input">
             <img
@@ -66,10 +66,10 @@
               fugit amet saepe delectus consequatur, corporis, error mollitia.
             </blockquote>
           </figure>
-        </li>
+        </li> -->
 
         <!-- Reply -->
-        <li class="comments__list--item comment__reply">
+        <!-- <li class="comments__list--item comment__reply">
           <img
             src="images/avatars/image-amyrobson.webp"
             alt="women image"
@@ -77,10 +77,10 @@
           />
           <input type="text" class="comment__reply--input" />
           <button class="comment__reply--btn">reply</button>
-        </li>
+        </li> -->
 
         <!-- Replied -->
-        <li class="comments__list--item commnet__replied">
+        <!-- <li class="comments__list--item commnet__replied">
           <div class="item__input">
             <img
               src="images/icon-plus.svg"
@@ -130,7 +130,7 @@
               magni soluta accusamus nulla non, quis adipisci tenetur velit ex
               fugit amet saepe delectus consequatur, corporis, error mollitia.
             </blockquote>
-        </li>
+        </li> -->
       </ul>
 
       <div class="overlay hidden">&nbsp;</div>
