@@ -4,6 +4,7 @@ export const state = {
   comments: [],
   currentUser: [],
 };
+console.log(state);
 
 export const getJSON = function () {
   //   state.comments.push(data.comments[0]);
@@ -14,10 +15,11 @@ export const getJSON = function () {
       content: comment.content,
       createdAt: comment.createdAt,
       id: comment.id,
-      replies: comment.replies,
       score: comment.score,
       userImage: comment.user.image,
       userName: comment.user.username,
+      replies: comment.replies,
+      //   ...(comment.replies !== 0 && { replies: comment.replies }),
     };
   });
 };

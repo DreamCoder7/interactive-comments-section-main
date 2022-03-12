@@ -4,8 +4,7 @@ import * as model from "./model.js";
 import View from "./View/View.js";
 import commentView from "./View/commentView.js";
 import replyView from "./View/replyView.js";
-
-console.log(model.state.comments);
+// import deleteView from "./View/deleteView.js";
 
 const controlComment = function () {
   commentView.render(model.state.comments);
@@ -13,17 +12,20 @@ const controlComment = function () {
 
 const controlReply = function (name) {
   model.state.comments.map((comment) => {
-    if (name === comment.userName) {
-      replyView.render(comment);
+    if (name.textContent === comment.userName) {
+      name
+        .closest(".comments__list--cont")
+        .querySelector(".comment__reply")
+        .classList.remove("hidden");
     }
   });
-  // replyView.render(model.state.comments);
 };
 
 const init = function () {
   controlComment();
   replyView.addHundlerReply(controlReply);
-  // controlReply();
+  replyView.addHundlerReplied();
+  replyView.render(model.state.comments[1].replies);
 };
 
 init();
