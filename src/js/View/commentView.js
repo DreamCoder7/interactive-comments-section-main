@@ -10,24 +10,45 @@ import image2 from "../../images/avatars/image-juliusomo.webp";
 class CommentView extends View {
   _parentElement = document.querySelector(".comments__list");
 
+  //   constructor() {
+  //     super();
+  //     this.addHundlerVote();
+  //   }
+
+  addHundlerVote() {
+    this._parentElement.addEventListener("click", function (e) {
+      if (e.target.closest(".item__up--vote")) {
+        const value = document.querySelector(".item__vote--num");
+        +value.textContent++;
+      } else if (e.target.closest(".item__down--vote")) {
+        const value = document.querySelector(".item__vote--num");
+        +value.textContent > 0 ? +value.textContent-- : 0;
+      }
+    });
+  }
+
   _generateMarkup() {
     return this._data
       .map((data) => {
         return `
         <div class="comments__list--cont">
             <li class="comments__list--item">
-                <div class="item__input">
-                <img
-                    src="${iconPlus}"
-                    alt="plus icon"
-                    class="item__input--icon"
-                />
-                <p class="item__input--num">${data.score}</p>
-                <img
-                    src="${iconMinus}"
-                    alt="minus icon"
-                    class="item__input--icon"
-                />
+                <div class="item__vote">
+                    <button class="item__up--vote">
+                        <img
+                        src="${iconPlus}"
+                        alt="plus icon"
+                        class="item__vote--icon"
+                        />
+                    </button>
+                    <p class="item__vote--num">${data.score}</p>
+                    <button class="item__down--vote">
+                        <img
+                        src="${iconMinus}"
+                        alt="minus icon"
+                        class="item__vote--icon"
+                        />
+                    </button>
                 </div>
                 <figure class="user__comment">
                 <div class="user__comment-head">

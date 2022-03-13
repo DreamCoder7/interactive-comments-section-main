@@ -29,17 +29,21 @@
         <!--
              <li class="comments__list--item">
           <div class="item__input">
-            <img
-            src="images/icon-plus.svg"
+            <button class="item__input--plus">
+              <img
+              src="images/icon-plus.svg"
               alt="plus icon"
               class="item__input--icon"
-            />
+              />
+            </button>
             <p class="item__input--num">12</p>
-            <img
+            <button class="item__input--minus">
+              <img
               src="images/icon-minus.svg"
               alt="minus icon"
               class="item__input--icon"
-            />
+              />
+            </button>
           </div>
           <figure class="user__comment">
             <div class="user__comment-head">
@@ -78,23 +82,28 @@
           />
           <input type="text" class="comment__reply--input" />
           <button class="comment__reply--btn">reply</button>
+          <button class="update--btn">Update</button>
         </li> -->
         <!-- </div> -->
 
         <!-- Replied -->
         <!-- <li class="comments__list--item commnet__replied">
           <div class="item__input">
-            <img
+            <button class="item__input--plus">
+              <img
               src="images/icon-plus.svg"
               alt="plus icon"
               class="item__input--icon"
-            />
+              />
+            </button>
             <p class="item__input--num">12</p>
-            <img
+            <button class="item__input-minus">
+              <img
               src="images/icon-minus.svg"
               alt="minus icon"
               class="item__input--icon"
-            />
+              />
+            </button>
           </div>
           <figure class="user__comment">
             <div class="user__comment-head">
@@ -109,7 +118,7 @@
                 <p class="user__period">1 month ago</p>
               </div>
               <div class="btns">
-                <button class="item__btn">
+                <button class="item__btn btn__delete">
                   <img
                     src="images/icon-delete.svg"
                     alt="Edit icon"
@@ -117,7 +126,7 @@
                   />
                   Delete
                 </button>
-                <button class="item__btn">
+                <button class="item__btn btn__edit">
                   <img
                     src="images/icon-edit.svg"
                     alt="Edit icon"
@@ -128,28 +137,29 @@
               </div>
             </div>
             <blockquote class="user__comment--text">
+              <span class="replying__to">@maxblagun</span>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
               magni soluta accusamus nulla non, quis adipisci tenetur velit ex
               fugit amet saepe delectus consequatur, corporis, error mollitia.
             </blockquote>
         </li> -->
       </ul>
-
-      <div class="overlay hidden">&nbsp;</div>
-      <div class="popup hidden">
-        <div class="comment__delete">
-          <p class="comment__delete--heading">Delete comment</p>
-          <p class="comment__delete--text">
-            Are you sure want to delete this comment?This will remove the
-            comment and can't be undone.
-          </p>
-          <div class="comment__delete--btns">
-            <button class="comment__delete--btn cancel">No, Cancel</button>
-            <button class="comment__delete--btn delete">Yes, delete</button>
-          </div>
+    </div>
+    <div class="overlay hidden">&nbsp;</div>
+    <div class="popup hidden">
+      <div class="comment__delete">
+        <p class="comment__delete--heading">Delete comment</p>
+        <p class="comment__delete--text">
+          Are you sure want to delete this comment?This will remove the comment
+          and can't be undone.
+        </p>
+        <div class="comment__delete--btns">
+          <button class="comment__delete--btn cancel">No, Cancel</button>
+          <button class="comment__delete--btn delete">Yes, delete</button>
         </div>
       </div>
     </div>
+
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
