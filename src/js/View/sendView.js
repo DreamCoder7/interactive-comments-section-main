@@ -31,7 +31,7 @@ class SendView extends View {
                 class="comment__reply--img"
             />
             <input type="text" class="comment__reply--input" />
-            <button class="comment__send--btn">reply</button>
+            <button class="comment__send--btn">send</button>
         </li>
         `;
   }

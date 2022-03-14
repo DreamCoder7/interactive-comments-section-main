@@ -8,6 +8,7 @@ import repliedView from "./View/repliedView.js";
 import sendView from "./View/sendView.js";
 import deleteView from "./View/deleteView.js";
 import editView from "./View/editView.js";
+console.log(commentView);
 
 const controlComment = function () {
   commentView.render(model.state.comments);
@@ -22,6 +23,8 @@ const controlReply = function (name) {
         .classList.remove("hidden");
     }
   });
+
+  commentView.addHundlerVote();
 };
 
 const controlReplied = function (inputValue) {

@@ -10,16 +10,12 @@ import image2 from "../../images/avatars/image-juliusomo.webp";
 class CommentView extends View {
   _parentElement = document.querySelector(".comments__list");
 
-  //   constructor() {
-  //     super();
-  //     this.addHundlerVote();
-  //   }
-
   addHundlerVote() {
     this._parentElement.addEventListener("click", function (e) {
       if (e.target.closest(".item__up--vote")) {
         const value = document.querySelector(".item__vote--num");
         +value.textContent++;
+        console.log(value);
       } else if (e.target.closest(".item__down--vote")) {
         const value = document.querySelector(".item__vote--num");
         +value.textContent > 0 ? +value.textContent-- : 0;
