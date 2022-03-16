@@ -37,9 +37,12 @@ body {
   position: relative;
   padding: 3.2rem 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex;
+  flex-direction: column; */
+  display: grid;
+  justify-items: center;
+  /* align-items: center; */
+  gap: 1.4rem;
 }
 
 .comments__list--cont {
@@ -188,6 +191,7 @@ blockquote {
   border-radius: 1rem;
 }
 
+.comment__send--reply,
 .comment__send--btn,
 .comment__reply--btn,
 .update--btn {
@@ -210,9 +214,12 @@ blockquote {
 }
 
 .comment__send {
-  width: 100%;
+  width: 50%;
 }
 
+.send__item {
+  width: 50%;
+}
 /* Replied */
 .commnet__replied {
   align-self: flex-end;

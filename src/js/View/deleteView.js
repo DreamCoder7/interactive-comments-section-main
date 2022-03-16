@@ -1,7 +1,7 @@
 import View from "./View.js";
 
 class DeleteView extends View {
-  _parentElement = document.querySelector(".comments__list");
+  _parentElement = document.querySelector(".container");
 
   _overlayEl = document.querySelector(".overlay");
   _popupEl = document.querySelector(".popup");

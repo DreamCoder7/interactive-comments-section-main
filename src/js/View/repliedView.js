@@ -17,13 +17,15 @@ class ReplyView extends View {
         .closest(".comment__reply")
         .querySelector(".comment__reply--input");
 
-      inputValue.value = "";
+      const parentEl = commentBtn.closest(".comments__list--cont");
+
       commentBtn.closest(".comment__reply").classList.add("hidden");
-      hundler(inputValue);
+      hundler(inputValue, parentEl);
+      inputValue.value = "";
     });
   }
 
-  _generateMarkup() {
+  repliedMarkup(data) {
     return `
         <li class="comments__list--item commnet__replied">
             <div class="item__vote">
@@ -34,7 +36,7 @@ class ReplyView extends View {
                   class="item__vote--icon"
                   />
                 </button>
-                <p class="item__vote--num">${this._data.score}</p>
+                <p class="item__vote--num">${data.score}</p>
                 <button class="item__down--vote">
                   <img
                   src="${iconMinus}"
@@ -52,19 +54,13 @@ class ReplyView extends View {
                         class="user__img"
                         />
                         <p class="user__name">${
-                          this._data.userName
-                            ? this._data.userName
-                            : this._data.user.username
+                          data.userName ? data.userName : data.user.username
                         }</p>
-                        ${
-                          this._data.id === 3
-                            ? ""
-                            : `<span class="owner">you</span>`
-                        }
-                        <p class="user__period">${this._data.createdAt}</p>
+                        ${data.id === 3 ? "" : `<span class="owner">you</span>`}
+                        <p class="user__period">${data.createdAt}</p>
                     </div>
                     <div class="btns">${
-                      this._data.id === 3
+                      data.id === 3
                         ? `<button class="item__btn">
                         <img
                             src="${iconReply}"
@@ -93,9 +89,9 @@ class ReplyView extends View {
                 </div>
                 <blockquote class="user__comment--text">
                     <span class="replying__to">${
-                      this._data.replyingTo.startsWith("@") ? "" : "@"
-                    } ${this._data.replyingTo}</span>
-                    ${this._data.content}
+                      data.replyingTo.startsWith("@") ? "" : "@"
+                    } ${data.replyingTo}</span>
+                    ${data.content}
                 </blockquote>
         </li>
       `;

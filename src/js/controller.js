@@ -2,13 +2,13 @@ import "core-js";
 import "regenerator-runtime";
 import * as model from "./model.js";
 import View from "./View/View.js";
+import moment from "moment";
 import commentView from "./View/commentView.js";
 import replyView from "./View/replyView.js";
 import repliedView from "./View/repliedView.js";
 import sendView from "./View/sendView.js";
 import deleteView from "./View/deleteView.js";
 import editView from "./View/editView.js";
-console.log(commentView);
 
 const controlComment = function () {
   commentView.render(model.state.comments);
@@ -27,23 +27,32 @@ const controlReply = function (name) {
   commentView.addHundlerVote();
 };
 
-const controlReplied = function (inputValue) {
-  model.state.comments[0].replies.push(inputValue.value);
+const replied = function (inputValue, data) {
+  data.replies.push(inputValue.value);
 
   const start = inputValue.value.indexOf("@");
   const end = inputValue.value.indexOf(" ");
 
-  model.state.comments[0].content = inputValue.value.substring(end);
-  model.state.comments[0].replyingTo = inputValue.value.substring(start, end);
+  data.content = inputValue.value.substring(end);
+  data.replyingTo = inputValue.value.substring(start, end);
+  return model.state.comments[0];
+};
 
-  repliedView.render(model.state.comments[0]);
+const controlReplied = function (inputValue, parentEl) {
+  parentEl.insertAdjacentHTML(
+    "beforeend",
+    repliedView.repliedMarkup(replied(inputValue, model.state.comments[0]))
+  );
 };
 
 const controlReplies = function () {
   model.state.comments.map((comment) => {
     if (comment.replies.length !== 0) {
       comment.replies.forEach((reply) => {
-        repliedView.render(reply);
+        document
+          .querySelector(".comments__list")
+          .insertAdjacentHTML("beforeend", repliedView.repliedMarkup(reply));
+        // console.log(reply);
       });
     }
   });
@@ -57,6 +66,18 @@ const controlSend = function (inputText, parentEl) {
     sendView.generateSendMarkup(model.state.comments[0])
   );
   inputText.value = "";
+};
+
+const controlSendReplied = function (inputValue, parentEl) {
+  parentEl.insertAdjacentHTML(
+    "beforeend",
+    repliedView.repliedMarkup(replied(inputValue, model.state.comments[0]))
+  );
+};
+
+const controlInput = function () {
+  const parentEl = document.querySelector(".comments__list");
+  parentEl.insertAdjacentHTML("afterend", sendView.generateInputMarkup());
 };
 
 const controlEdit = function (parentEl, inputValue) {
@@ -74,7 +95,6 @@ const controlUpdate = function (parentEl, inputValue) {
 };
 
 const controlDelete = function () {
-  // console.log(parent);
   deleteView.togglePopup();
 };
 
@@ -90,10 +110,11 @@ const controlVote = function () {
 const init = function () {
   controlComment();
   controlReplies();
-  sendView.render();
+  controlInput();
 
   replyView.addHundlerReply(controlReply);
   repliedView.addHundlerReplied(controlReplied);
+  sendView.addHundlerSendReplied(controlSendReplied);
   sendView.addHundlerSend(controlSend);
 
   deleteView.addHundlerDeleteReplied(controlDelete);

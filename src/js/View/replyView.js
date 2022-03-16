@@ -1,7 +1,7 @@
 import View from "./View.js";
 
 class ReplyView extends View {
-  _parentElement = document.querySelector(".comments__list");
+  _parentElement = document.querySelector(".container");
 
   addHundlerReply(hundler) {
     this._parentElement.addEventListener("click", function (e) {

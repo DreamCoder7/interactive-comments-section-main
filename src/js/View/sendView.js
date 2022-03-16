@@ -1,4 +1,5 @@
 import View from "./View.js";
+import repliedView from "./repliedView.js";
 import iconPlus from "url:../../images/icons/icon-plus.svg";
 import iconMinus from "url:../../images/icons/icon-minus.svg";
 import iconReply from "url:../../images/icons/icon-reply.svg";
@@ -6,7 +7,22 @@ import image1 from "../../images/avatars/image-maxblagun.webp";
 import image2 from "../../images/avatars/image-ramsesmiron.webp";
 
 class SendView extends View {
-  _parentElement = document.querySelector(".comments__list");
+  _parentElement = document.querySelector(".container");
+
+  addHundlerSendReplied(hundler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const commentBtn = e.target.closest(".comment__send--reply");
+      if (!commentBtn) return;
+      const inputValue = commentBtn
+        .closest(".comment__reply")
+        .querySelector(".comment__reply--input");
+
+      const parentEl = commentBtn.closest(".send__item");
+      commentBtn.closest(".comment__reply").classList.add("hidden");
+      hundler(inputValue, parentEl);
+      inputValue.value = "";
+    });
+  }
 
   addHundlerSend(hundler) {
     this._parentElement.addEventListener("click", function (e) {
@@ -22,7 +38,7 @@ class SendView extends View {
     });
   }
 
-  _generateMarkup() {
+  generateInputMarkup() {
     return `
         <li class="comment__send">
             <img
@@ -38,8 +54,8 @@ class SendView extends View {
 
   generateSendMarkup(data) {
     return `
-        <div class="comments__list--cont">
-            <li class="comments__list--item">
+        <div class="comments__list--cont send__item">
+            <li class="comments__list--item ">
                 <div class="item__vote">
                   <button class="item__up--vote">
                     <img
@@ -90,7 +106,7 @@ class SendView extends View {
                     class="comment__reply--img"
                 />
                 <input type="text" class="comment__reply--input" />
-                <button class="comment__reply--btn">reply</button>
+                <button class="comment__send--reply">reply</button>
             </li>
         </div>
     `;

@@ -1,4 +1,6 @@
 import data from "../json/data.json";
+import moment from "moment";
+import { locale } from "core-js";
 
 export const state = {
   comments: [],
@@ -7,10 +9,7 @@ export const state = {
 console.log(state);
 
 export const getJSON = function () {
-  //   state.comments.push(data.comments[0]);
-
   state.comments = data.comments.map((comment) => {
-    //   console.log(comment);
     return {
       content: comment.content,
       createdAt: comment.createdAt,
@@ -24,3 +23,13 @@ export const getJSON = function () {
   });
 };
 getJSON();
+
+export const relativeTime = function (date) {
+  const start = moment(`${date}`);
+  const relative = moment(start, "YYYYMMDD").fromNow();
+  console.log(relative);
+
+  state.comments.forEach((comment) => {
+    comment.createdAt = relative;
+  });
+};
