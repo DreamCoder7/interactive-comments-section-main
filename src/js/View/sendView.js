@@ -9,6 +9,24 @@ import image2 from "../../images/avatars/image-ramsesmiron.webp";
 class SendView extends View {
   _parentElement = document.querySelector(".container");
 
+  addHundlerSendUpVote() {
+    this._parentElement.addEventListener("click", function (e) {
+      const upVote = e.target.closest(".item__vote--icon");
+      if (!upVote) return;
+
+      const voted = upVote
+        .closest(".item__vote")
+        .querySelector(".item__vote--num");
+      console.log(voted);
+
+      if (upVote.closest(".item__up--vote")) {
+        +voted.textContent++;
+      } else if (upVote.closest(".item__down--vote")) {
+        +voted.textContent--;
+      }
+    });
+  }
+
   addHundlerSendReplied(hundler) {
     this._parentElement.addEventListener("click", function (e) {
       const commentBtn = e.target.closest(".comment__send--reply");
@@ -46,7 +64,7 @@ class SendView extends View {
                 alt="women image"
                 class="comment__reply--img"
             />
-            <input type="text" class="comment__reply--input" />
+            <input type="text" class="comment__reply--input" placeholder="Add a comment..."/>
             <button class="comment__send--btn">send</button>
         </li>
         `;
@@ -93,9 +111,9 @@ class SendView extends View {
                     Reply
                     </button>
                 </div>
-                <blockquote class="user__comment--text">
+                <p class="user__comment--text">
                     ${data.content}
-                </blockquote>
+                </p>
                 </figure>
             </li>
 

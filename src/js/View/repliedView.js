@@ -87,12 +87,12 @@ class ReplyView extends View {
                     </button>`
                     }</div>
                 </div>
-                <blockquote class="user__comment--text">
+                <p class="user__comment--text">
                     <span class="replying__to">${
                       data.replyingTo.startsWith("@") ? "" : "@"
                     } ${data.replyingTo}</span>
                     ${data.content}
-                </blockquote>
+                </p>
         </li>
       `;
   }

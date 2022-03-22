@@ -5,30 +5,34 @@ import iconReply from "url:../../images/icons/icon-reply.svg";
 import image1 from "../../images/avatars/image-amyrobson.webp";
 import image2 from "../../images/avatars/image-juliusomo.webp";
 
-// console.log(images);
 
 class CommentView extends View {
   _parentElement = document.querySelector(".comments__list");
 
-  addHundlerVote() {
+  addHundlerUpVote() {
     this._parentElement.addEventListener("click", function (e) {
-      if (e.target.closest(".item__up--vote")) {
-        const value = document.querySelector(".item__vote--num");
-        +value.textContent++;
-        console.log(value);
-      } else if (e.target.closest(".item__down--vote")) {
-        const value = document.querySelector(".item__vote--num");
-        +value.textContent > 0 ? +value.textContent-- : 0;
+      const upVote = e.target.closest(".item__vote--icon");
+      if (!upVote) return;
+
+      const voted = upVote
+        .closest(".item__vote")
+        .querySelector(".item__vote--num");
+      console.log(voted);
+
+      if (upVote.closest(".item__up--vote")) {
+        +voted.textContent++;
+      } else if (upVote.closest(".item__down--vote")) {
+        +voted.textContent--;
       }
     });
   }
 
   _generateMarkup() {
     return this._data
-      .map((data) => {
+      .map((data, index) => {
         return `
         <div class="comments__list--cont">
-            <li class="comments__list--item">
+            <li class="comments__list--item comment__item--${index + 1}">
                 <div class="item__vote">
                     <button class="item__up--vote">
                         <img
@@ -58,17 +62,17 @@ class CommentView extends View {
                     <p class="user__period">${data.createdAt}</p>
                     </div>
                     <button class="item__btn">
-                    <img
-                        src="${iconReply}"
-                        alt="Reply icon"
-                        class="item__btn-icon"
-                    />
-                    Reply
+                      <img
+                          src="${iconReply}"
+                          alt="Reply icon"
+                          class="item__btn-icon"
+                      />
+                      Reply
                     </button>
                 </div>
-                <blockquote class="user__comment--text">
+                <p class="user__comment--text">
                     ${data.content}
-                </blockquote>
+                </p>
                 </figure>
             </li>
 
@@ -78,7 +82,7 @@ class CommentView extends View {
                     alt="women image"
                     class="comment__reply--img"
                 />
-                <input type="text" class="comment__reply--input" />
+                <input type="text" class="comment__reply--input" placeholder="Add a comment..."/>
                 <button class="comment__reply--btn">reply</button>
             </li>
         </div>

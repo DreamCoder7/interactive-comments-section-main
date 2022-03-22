@@ -18,13 +18,12 @@ const controlReply = function (name) {
   model.state.comments.map((comment) => {
     if (name.textContent === comment.userName) {
       name
+
         .closest(".comments__list--cont")
         .querySelector(".comment__reply")
         .classList.remove("hidden");
     }
   });
-
-  commentView.addHundlerVote();
 };
 
 const replied = function (inputValue, data) {
@@ -39,6 +38,7 @@ const replied = function (inputValue, data) {
 };
 
 const controlReplied = function (inputValue, parentEl) {
+  model.relativeTime(moment());
   parentEl.insertAdjacentHTML(
     "beforeend",
     repliedView.repliedMarkup(replied(inputValue, model.state.comments[0]))
@@ -52,7 +52,6 @@ const controlReplies = function () {
         document
           .querySelector(".comments__list")
           .insertAdjacentHTML("beforeend", repliedView.repliedMarkup(reply));
-        // console.log(reply);
       });
     }
   });
@@ -98,17 +97,9 @@ const controlDelete = function () {
   deleteView.togglePopup();
 };
 
-const controlVote = function () {
-  // const score = value.closest(".item__vote--num");
-  // if (value.closest(".item__up--vote")) {
-  //   +score.textContent++;
-  // } else if (value.closest(".item__down--vote")) {
-  //   +score.textContent--;
-  // }
-};
-
 const init = function () {
   controlComment();
+
   controlReplies();
   controlInput();
 
@@ -123,7 +114,9 @@ const init = function () {
   editView.addHundlerEditReplied(controlEdit);
   editView.addHundlerUpdate(controlUpdate);
 
-  // commentView.addHundlerVote(controlVote);
+  commentView.addHundlerUpVote();
+  sendView.addHundlerSendUpVote();
 };
-
 init();
+
+console.log("log");

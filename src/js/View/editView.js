@@ -10,6 +10,7 @@ class EditView extends View {
 
       const target = btn.closest(".user__comment");
       const repliedText = target.querySelector(".update--input");
+      console.log(repliedText);
       hundler(target, repliedText);
       repliedText.remove();
       btn.remove();
@@ -23,6 +24,7 @@ class EditView extends View {
 
       const target = btn.closest(".user__comment");
       const repliedText = target.querySelector(".user__comment--text");
+      console.log(repliedText);
       hundler(target, repliedText);
       repliedText.remove();
     });
@@ -37,7 +39,7 @@ class EditView extends View {
 
   updateMarkup(data) {
     return `
-        <blockquote class="user__comment--text">${data}</blockquote>
+        <p class="user__comment--text">${data}</p>
     `;
   }
 }
